@@ -153,19 +153,19 @@ tc.shell.prototype = {
 
       // Filter tokens.
       for (i in command) if (i > limit) (function (token) {
-        if (/^\.\.?$/(token)) {
+        if (/^\.\.?$/.test(token)) {
           // '.' and '..': pass
         }
-        else if (/^-[A-Za-z0-9]$/(token)) {
+        else if (/^-[A-Za-z0-9]$/.test(token)) {
           // Simple flag, no argument glued on: pass.
         }
-        else if (m = /^(-[A-Za-z0-9])/(token)) {
+        else if (m = /^(-[A-Za-z0-9])/.exec(token)) {
           // Multiple flags, or single flag with arg. Remove argument if key is p (password) or complex value.
-          if ((m[1][1] == 'p' || /[^A-Za-z0-9]/(m[1])) && m[1].length > 2) {
+          if ((m[1][1] == 'p' || /[^A-Za-z0-9]/.test(m[1])) && m[1].length > 2) {
             command[i] = m[1] + wildcard;
           }
         }
-        else if (/^--[A-Za-z0-9_-]*$/(token)) {
+        else if (/^--[A-Za-z0-9_-]*$/.test(token)) {
           // Long flag: pass
         }
         else {
