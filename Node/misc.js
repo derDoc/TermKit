@@ -21,7 +21,7 @@ exports.returnMeta = function (status, meta) {
     code = number;
   }
   else if (typeof status == 'boolean') {
-    code = +status;
+    code = +status;	
   }
   else {
     status = false;
@@ -181,16 +181,16 @@ exports.parseArgs = function (tokens) {
       i = 1, m;
 
   for (; i < n; ++i) (function (token) {
-    if (m = /^-([A-Za-z0-9_])$/(tokens[i])) {
+    if (m = /^-([A-Za-z0-9_])$/.exec(tokens[i])) {
       options[m[1]] = true;
     }
-    else if (m = /^-([A-Za-z0-9_][A-Za-z0-9_-]*)$/(tokens[i])) {
+    else if (m = /^-([A-Za-z0-9_][A-Za-z0-9_-]*)$/.exec(tokens[i])) {
       var flags = m[1].split(''), j;
       for (j in flags) {
         options[flags[j]] = true;
       }
     }
-    else if (m = /^--([A-Za-z0-9_-]+)$/(tokens[i])) {
+    else if (m = /^--([A-Za-z0-9_-]+)$/.exec(tokens[i])) {
       if (typeof tokens[i + 1] != 'undefined' && tokens[i + 1][0] != '-') {
         ++i;
         options[m[1]] = tokens[i];
@@ -226,13 +226,13 @@ exports.escapeBinary = function (data) {
   var binary = data, n = binary.length, i = 0;
 
   // Escape non-printables
-  binary = binary.replace(/([\u0000-\u001F\u0080-\u009F])/g, function (x, char) {
-    if (/[^\r\n\t]/(char)) {
-      var num = char.charCodeAt(0).toString(16);
+  binary = binary.replace(/([\u0000-\u001F\u0080-\u009F])/g, function (x, chr) {
+    if (/[^\r\n\t]/.exec(chr)) {
+      var num = chr.charCodeAt(0).toString(16);
       while (num.length < 4) num = '0' + num;
       return '\\u' + num;
     }
-    return char;
+    return chr;
   });
 
   return binary;

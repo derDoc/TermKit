@@ -226,13 +226,13 @@ tf.tokenPlain.triggerComplete = function (offset, event) {
       test = this.contents;
 
   // Split trailing space.
-  if (/ $/(test)) {
+  if (/ $/.test(test)) {
     test = test.substring(0, test.length - 1);
     out.push(new tf.tokenEmpty());
   }
 
   // Special characters must be quoted.
-  var type = /[ "'\\]/(test) ? tf.tokenQuoted : tf.tokenPlain;
+  var type = /[ "'\\]/.test(test) ? tf.tokenQuoted : tf.tokenPlain;
   out.unshift(new type(test, this.style));
 
   return out;
@@ -291,7 +291,7 @@ tf.tokenQuoted.triggerComplete = function (offset, event) {
       test = this.contents;
 
   // Split trailing space.
-  if (/ $/(test)) {
+  if (/ $/.test(test)) {
     test = test.substring(0, test.length - 1);
     out.push(new tf.tokenEmpty());
   }

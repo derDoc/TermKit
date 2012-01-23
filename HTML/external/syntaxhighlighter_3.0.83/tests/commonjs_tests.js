@@ -1,7 +1,7 @@
 /**
  * This is a CommonJS compatibility test. You can run this file with node.
  */
-require.paths.unshift(__dirname + '/../scripts');
+//require.paths.unshift(__dirname + '/../scripts');
 
 var sys = require('sys'),
 	shSyntaxHighlighter = require('shCore').SyntaxHighlighter,

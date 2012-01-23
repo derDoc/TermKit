@@ -438,7 +438,7 @@ exports.filesReader.prototype = {
     var type = 'application/octed-stream';
     
     prefix = commonPrefix(types);
-    if (!(/^[^\/]+\/[^\/]+$/(prefix))) {
+    if (!(/^[^\/]+\/[^\/]+$/.test(prefix))) {
       // If we only matched a type category (e.g. text/),
       // coerce types to their base.
       types = types.map(function (type) {
@@ -446,7 +446,7 @@ exports.filesReader.prototype = {
       });
       prefix = commonPrefix(types);
       
-      if (!(/^[^\/]+\/[^\/]+$/(prefix))) {
+      if (!(/^[^\/]+\/[^\/]+$/.test(prefix))) {
         // Replace with generic type.
         type = meta.default(prefix) || 'application/octet-stream';
       }
