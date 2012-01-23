@@ -5,10 +5,10 @@ var termkit = {
   version: 1,
   test: true,
 };
-require.paths.unshift('./socket.io-node/lib');
-require.paths.unshift('.');
-require.paths.unshift('shell');
-require.paths.unshift('../Shared/');
+//require.paths.unshift('./socket.io-node/lib');
+//require.paths.unshift('.');
+//require.paths.unshift('shell');
+//require.paths.unshift('../Shared/');
 
 var whenDone = require('misc').whenDone;
 var EventEmitter = require("events").EventEmitter;
@@ -248,7 +248,7 @@ function testMeta(assert) {
   
   // Generate headers back.
   var string = headers.generate();
-  assert(/\r\n\r\n$/(string), 'Headers end in CRLF x2');
+  assert(/\r\n\r\n$/.exec(string), 'Headers end in CRLF x2');
   assert(string.split(/\r\n/).length == 5 + 2, '5 Headers returned');
   assert(/^Content-Type:\s*text\/plain;\s*charset=utf-16\r\n/m, 'Content-Type correct');
   assert(/^Content-Disposition:\s*attachment;\s*filename=genome.jpeg;\s*modification-date="Wed, 12 February 1997 16:29:51 -0500"\r\n/m, 'Content-Disposition correct');

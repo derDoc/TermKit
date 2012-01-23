@@ -3,7 +3,7 @@ var termkit = {
   version: 1,
 };
 
-require.paths.unshift(__dirname + '/../Shared/');
+//require.paths.unshift(__dirname + '/../Shared/');
 
 // Load requirements.
 var http = require('http'),  
